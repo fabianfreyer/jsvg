@@ -32,7 +32,7 @@ function load() {
 	 * Demo: dynamisches nachladen von plugins
 	 */
 	loadjs('HelloWorldButton.js', function() {
-		var btn = new HelloWorldButton("Hello", 50, 30);
+		var btn = new HelloWorldButton(50, 30, "Hello");
 		svg.append(btn);
 	});
 }

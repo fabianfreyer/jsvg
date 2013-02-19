@@ -118,7 +118,7 @@ function group(id, x, y, rot, classes)  {
 	this.rot = rot;
 }
 
-function rect(id, x, y, width, height, classes) {
+function rect(x, y, width, height, id, classes) {
 	svg_extend(this, 'rect', id, classes);
 	
 	this.setAttribute("x", x);
@@ -129,7 +129,7 @@ function rect(id, x, y, width, height, classes) {
 
 }
 
-function text(id, x, y, label, classes) {
+function text(x, y, label, id, classes) {
 	svg_extend(this, 'text', id, classes);
 	
 	self.x = x;
@@ -141,7 +141,7 @@ function text(id, x, y, label, classes) {
     this.self.appendChild(document.createTextNode(label));
 }
 
-function circle(id, x, y, r, classes) {
+function circle(x, y, r, id, classes) {
 	svg_extend(this, 'circle', id, classes);
 	
 	self.cx = x;

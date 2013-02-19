@@ -20,11 +20,11 @@
  * Hello World Button Plugin
  */
 
-function HelloWorldButton(id, x, y) {
+function HelloWorldButton(x, y, id) {
 	svg_extend(this, 'g', id, ['button', 'example']);
 	
-	this.append(new rect(id+'_rect', x, y, 80, 30, ['rectangle']));
-	this.append(new text(id+'_text', x+6, y+20, 'Say Hello', ['caption']));
+	this.append(new rect(x, y, 80, 30, id+'_rect', ['rectangle']));
+	this.append(new text(x+6, y+20, 'Say Hello', id+'_text', ['caption']));
 	
 	this.onclick = function(e) {
 		alert("Hello World!");
