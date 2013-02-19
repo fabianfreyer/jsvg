@@ -141,6 +141,12 @@ function svg_text(x, y, label, id, classes) {
     this.self.appendChild(document.createTextNode(label));
 }
 
+function svg_path(data, id, classes) {
+	svg_extend(this, 'path', id, classes);
+	this.setAttribute("d", data);
+    this.setAttribute("fill", "Red");
+}
+
 function svg_circle(x, y, r, id, classes) {
 	svg_extend(this, 'circle', id, classes);
 	
