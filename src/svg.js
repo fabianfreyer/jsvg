@@ -30,6 +30,7 @@ function e_prototype(type, id) {
 	this.children = new Array();
 	
 	this.id = id;
+	
 	/**
 	 * Event function prototypes. Overload these for event handling
 	 * @todo implement more events. see http://www.w3.org/TR/SVG/interact.html for details.
@@ -68,6 +69,23 @@ function e_prototype(type, id) {
 	 */
 	this.setAttribute = function (name, value) {
 		this.self.setAttribute(name, value);
+	}
+	
+	/**
+	 * Set ID. If the ID is not passed or is null, create an ID based on the type 
+	 * of the tag and a global counter of the number of tags.
+	 */
+	if(typeof window.idCount === 'undefined') {
+		window.idCount = {};
+	}
+	if (id) {
+		this.setAttribute("id", id);
+	} else {
+		if(isNaN(window.idCount[type])){
+			window.idCount[type] = 0
+		};
+		window.idCount[type] += 1;
+		this.setAttribute("id", type+window.idCount[type]);
 	}
 	
 	this.append = function(e) {
