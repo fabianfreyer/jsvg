@@ -23,8 +23,11 @@ function svg_ce(e) {return document.createElementNS("http://www.w3.org/2000/svg"
 
 /**
  * SVG element prototype.
+ * @param type the type of the tag. type='foobar' will render as <foobar>
+ * @param ID the id of the tag. If not specified or null is passed, an ID will be generated.
+ * @param classes a list of the classes that are specified.
  */
-function e_prototype(type, id) {
+function e_prototype(type, id, classes) {
 	/** This is the actual dom element that gets rendered. */
 	this.self = svg_ce(type);
 	this.children = new Array();
@@ -88,6 +91,11 @@ function e_prototype(type, id) {
 		this.setAttribute("id", type+window.idCount[type]);
 	}
 	
+	/**
+	 * Set classes
+	 */
+	if(typeof classes !== 'undefined') { this.setAttribute("class", classes.join(" ")) };
+	
 	this.append = function(e) {
 		this.children.push(e);
 		e.parent = this;
@@ -101,17 +109,17 @@ function e_prototype(type, id) {
 }
 
 /** Utility Function to extend a tag type */
-function svg_extend(obj, id, tag) {e_prototype.apply(obj, [tag, id]);}
+function svg_extend(obj, tag, id, classes) {e_prototype.apply(obj, [tag, id, classes]);}
 
-function group(id, x, y, rot )  {
-	svg_extend(this, id, 'g');
+function group(id, x, y, rot, classes)  {
+	svg_extend(this, 'g', id, classes);
 	this.x = x;
 	this.y = y;
 	this.rot = rot;
 }
 
-function rect(id, x, y, width, height) {
-	svg_extend(this, id, 'rect');
+function rect(id, x, y, width, height, classes) {
+	svg_extend(this, 'rect', id, classes);
 	
 	this.setAttribute("x", x);
 	this.setAttribute("y", y);
@@ -121,8 +129,8 @@ function rect(id, x, y, width, height) {
 
 }
 
-function text(id, x, y, label) {
-	svg_extend(this, id, 'text');
+function text(id, x, y, label, classes) {
+	svg_extend(this, 'text', id, classes);
 	
 	self.x = x;
 	self.y = y;
@@ -133,8 +141,8 @@ function text(id, x, y, label) {
     this.self.appendChild(document.createTextNode(label));
 }
 
-function circle(id, x, y, r) {
-	svg_extend(this, id, 'circle');
+function circle(id, x, y, r, classes) {
+	svg_extend(this, 'circle', id, classes);
 	
 	self.cx = x;
 	self.cy = y;
@@ -146,11 +154,9 @@ function circle(id, x, y, r) {
     this.self.setAttribute("fill", "#336699");
 }
 
-function SVG(parentId, id) {
-	e_prototype.apply(this, ['svg', id]);
+function SVG(parentId, id, classes) {
+	svg_extend(this, "svg", id, classes);
 	this.parent = document.getElementById(parentId);
-	this.self.width = 300;
-	this.self.height = 480;
 	this.render = function() {
 		/*
 		 *  Do not use this.parent.self here since this.parent is not a e_prototype subclass

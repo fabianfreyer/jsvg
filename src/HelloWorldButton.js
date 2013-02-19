@@ -21,10 +21,10 @@
  */
 
 function HelloWorldButton(id, x, y) {
-	svg_extend(this, id, 'g');
+	svg_extend(this, 'g', id, ['button', 'example']);
 	
-	this.append(new rect(id+'_rect', x, y, 80, 30));
-	this.append(new text(id+'_text', x+6, y+20, 'Say Hello'));
+	this.append(new rect(id+'_rect', x, y, 80, 30, ['rectangle']));
+	this.append(new text(id+'_text', x+6, y+20, 'Say Hello', ['caption']));
 	
 	this.onclick = function(e) {
 		alert("Hello World!");

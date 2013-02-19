@@ -26,7 +26,7 @@ function loadjs(filename, callback) {
 }
 
 function load() {
-	var svg = new SVG('test');
+	var svg = new SVG('test', null, ['svg']);
 	
 	/**
 	 * Demo: dynamisches nachladen von plugins
