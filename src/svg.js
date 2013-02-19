@@ -34,12 +34,12 @@ function e_prototype(type, id) {
 	 * Event function prototypes. Overload these for event handling
 	 * @todo implement more events. see http://www.w3.org/TR/SVG/interact.html for details.
 	 */
-	this.onclick = null
-	this.ondblclick = null
-	this.onmouseover = null
-	this.onmouseout = null
-	this.onmousedown = null
-	this.onmouseup = null
+	this.onclick = null;
+	this.ondblclick = null;
+	this.onmouseover = null;
+	this.onmouseout = null;
+	this.onmousedown = null;
+	this.onmouseup = null;
 	
 	/**
 	 * Event connection helper function. Can be overloaded to supply plugin-
@@ -78,16 +78,12 @@ function e_prototype(type, id) {
 	
 	this.render = function() {
 		this.parent.self.appendChild(this.self);
-		this.connectAll()
+		this.connectAll();
 	}
 }
 
-/**
- * Utility Function to extend a tag type
- */
-function svg_extend(obj, id, tag) {
-	e_prototype.apply(obj, [tag, id])
-}
+/** Utility Function to extend a tag type */
+function svg_extend(obj, id, tag) {e_prototype.apply(obj, [tag, id]);}
 
 function group(id, x, y, rot )  {
 	svg_extend(this, id, 'g');
@@ -108,7 +104,7 @@ function rect(id, x, y, width, height) {
 }
 
 function text(id, x, y, label) {
-	svg_extend(this, id, 'text')
+	svg_extend(this, id, 'text');
 	
 	self.x = x;
 	self.y = y;
@@ -120,7 +116,7 @@ function text(id, x, y, label) {
 }
 
 function circle(id, x, y, r) {
-	svg_extend(this, id, 'circle')
+	svg_extend(this, id, 'circle');
 	
 	self.cx = x;
 	self.cy = y;

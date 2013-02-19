@@ -17,12 +17,12 @@
     along with jsvg.  If not, see <http://www.gnu.org/licenses/>.*/
 
 function loadjs(filename, callback) {
-	var script=document.createElement('script')
-	script.setAttribute("type","text/javascript")
-	script.setAttribute("src", filename)
+	var script=document.createElement('script');
+	script.setAttribute("type","text/javascript");
+	script.setAttribute("src", filename);
 	script.onreadystatechange = callback;
 	script.onload = callback;
-	document.getElementsByTagName("head")[0].appendChild(script)
+	document.getElementsByTagName("head")[0].appendChild(script);
 }
 
 function load() {
